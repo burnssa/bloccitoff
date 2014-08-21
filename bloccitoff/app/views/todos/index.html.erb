@@ -1,0 +1,49 @@
+<div>
+	<p>
+	  Your to-do list is here!
+	</p>
+</div>
+
+<h1>Todos</h1>
+
+<table class="table table-striped">
+ <thead>
+   	<tr>
+    	<th>Description</th>
+    	<th>Days left</th>
+    	<th>Complete</th>
+      <th>Delete</th>
+   	</tr>
+	</thead>  
+  <tbody>
+    <% @todos.each do |todo| %>
+  	<tr>
+    	<td><%= todo.description %></td>
+    	<td><%= distance_of_time_in_words_to_now(todo.created_at + 7.days) %></td>
+    	<td>
+        <div class="checkbox"> 
+          <%= check_box("todo", todo.complete?) %>
+        </div>
+      </td>
+      <td>
+        <div id="ck-button">
+          <label>
+            <input type="checkbox" value="1"><span>red</span>
+          </label>
+        </div>
+      </td>
+  	</tr>
+     <% end %>
+     <tr>
+      <td>
+        <%= form_for Todo.new do |f| %>
+        <%= f.text_field :description %>
+        <%= f.submit "Save" %>
+        <% end %>
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody> 
+</table>
