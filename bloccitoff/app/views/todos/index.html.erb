@@ -12,7 +12,6 @@
     	<th>Description</th>
     	<th>Days left</th>
     	<th>Complete</th>
-      <th>Delete</th>
    	</tr>
 	</thead>  
   <tbody>
@@ -20,16 +19,9 @@
   	<tr>
     	<td><%= todo.description %></td>
     	<td><%= distance_of_time_in_words_to_now(todo.created_at + 7.days) %></td>
-    	<td>
-        <div class="checkbox"> 
-          <%= check_box("todo", todo.complete?) %>
-        </div>
-      </td>
       <td>
-        <div id="ck-button">
-          <label>
-            <input type="checkbox" value="1"><span>red</span>
-          </label>
+        <div input id="ck-button"> 
+          <%= button_to "Complete", todo_path(todo), action: :delete, method: :delete, id: todo.id %>
         </div>
       </td>
   	</tr>
@@ -43,7 +35,11 @@
       </td>
       <td></td>
       <td></td>
-      <td></td>
     </tr>
   </tbody> 
 </table>
+
+    
+ 
+<!-- <p><%= link_to "New todo", new_todo_path, class: "btn btn-success" %></p>
+ -->
